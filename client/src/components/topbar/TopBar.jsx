@@ -1,8 +1,13 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { Context } from "../../context/Context";
 import "./topbar.css";
 
 export default function TopBar() {
-  const user = false;
+  const { user, dispatch } = useContext(Context);
+  const handleClick = ()=>{
+    dispatch({type:"LOGOUT"});
+  }
   return (
     <div className="top">
       <div className="topLeft">
@@ -19,14 +24,14 @@ export default function TopBar() {
           <li className="topListItem"><Link to="/" className="link">ABOUT</Link></li>
           <li className="topListItem"><Link to="/" className="link">CONTACT</Link></li>
           <li className="topListItem"><Link to="/write" className="link">WRITE</Link></li>
-          <li className="topListItem">{user && "LOGOUT"}</li>
+          <li className="topListItem" onClick={handleClick}>{user && "LOGOUT"}</li>
         </ul>
       </div>
       <div className="topRight">
         {user ? (
           <img
             className="topImg"
-            src="https://images.pexels.com/photos/1858175/pexels-photo-1858175.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+            src={user.profilePic}
             alt=""
           />
         ) : (
