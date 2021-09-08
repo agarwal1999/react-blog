@@ -10,7 +10,7 @@ const SinglePost = () => {
   const id = location.pathname.split("/")[2];
   const [post, setPost] = useState({});
   const { user } = useContext(Context);
-  const PF = process.env.REACT_APP_API_URL+"/images/"
+  const PF = "https://tech-diary.herokuapp.com/images/"
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [updateMode, setUpdateMode] = useState(false);

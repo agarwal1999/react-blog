@@ -8,7 +8,7 @@ export default function TopBar() {
   const handleClick = ()=>{
     dispatch({type:"LOGOUT"});
   }
-  const PF = process.env.REACT_APP_API_URL+"/images/"
+  const PF = "https://tech-diary.herokuapp.com/images/"
   return (
     <div className="top">
       <div className="topLeft">

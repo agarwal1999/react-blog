@@ -6,7 +6,7 @@ import axios from "axios";
 import { axiosInstance } from "../../config";
 
 const Setting = () => {
-  const PF = process.env.REAC_APP_API_URL+"/images/"
+  const PF = "https://tech-diary.herokuapp.com/images/"
   const { user, dispatch } = useContext(Context);
   const [file, setFile] = useState(null);
   const [username, setUsername] = useState(user.username)
