@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom"
+import { axiosInstance } from "../../config";
 import {Context} from "../../context/Context";
 import "./singlePost.css"
 
@@ -9,14 +10,14 @@ const SinglePost = () => {
   const id = location.pathname.split("/")[2];
   const [post, setPost] = useState({});
   const { user } = useContext(Context);
-  const PF = "http://localhost:5000/images/"
+  const PF = process.env.REACT_APP_API_URL+"/images/"
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [updateMode, setUpdateMode] = useState(false);
 
   useEffect(()=>{
     const getPost = async ()=>{
-      const response = await axios.get(`http://localhost:5000/api/posts/get/${id}`);
+      const response = await axiosInstance.get(`/posts/get/${id}`);
       setPost(response.data);
       setTitle(response.data.title)
       setDesc(response.data.desc);
@@ -25,14 +26,14 @@ const SinglePost = () => {
   },[id]);
 
   const handleDelete = async ()=>{
-    await axios.delete(`http://localhost:5000/api/posts/delete/${id}`, {data:{username:user.username}})
+    await axiosInstance.delete(`/posts/delete/${id}`, {data:{username:user.username}})
     .then(res=>window.location.replace("/"))
     .catch(err=>console.log(err))
   }
 
   const handleUpdate = async ()=>{
     try {
-      await axios.put(`http://localhost:5000/api/posts/update/${id}`, {
+      await axiosInstance.put(`/posts/update/${id}`, {
         username:user.username, 
         title, 
         desc

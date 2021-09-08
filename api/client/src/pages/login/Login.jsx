@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import { Context } from "../../context/Context"
 import axios from "axios";
 import "./login.css"
+import { axiosInstance } from "../../config";
 
 const Login = () => {
 
@@ -18,7 +19,7 @@ const Login = () => {
       password : passwordRef.current.value,
     }
     try {
-      const response = await axios.post("http://localhost:5000/api/auth/login", postData);
+      const response = await axiosInstance.post("/auth/login", postData);
       dispatch({type:"LOGIN_SUCCESS", payload:response.data})
     } catch (error) {
       dispatch({type:"LOGIN_FAILURE"});

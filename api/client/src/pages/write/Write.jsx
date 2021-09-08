@@ -2,6 +2,7 @@ import { useContext, useState } from "react"
 import axios from "axios";
 import { Context } from "../../context/Context";
 import "./write.css"
+import { axiosInstance } from "../../config";
 
 const Write = () => {
   const [title, setTitle] = useState("");
@@ -23,12 +24,12 @@ const Write = () => {
       data.append("file", file);
       postData.photo = filename;
       try {
-        await axios.post("http://localhost:5000/api/upload", data)
+        await axiosInstance.post("/upload", data)
       } catch (error) {
         console.log(error);
       }
     }
-    await axios.post("http://localhost:5000/api/posts", postData)
+    await axiosInstance.post("/posts", postData)
     .then(res=>window.location.replace("/post/"+res.data._id))
     .catch(err=>console.log(err))
   }
