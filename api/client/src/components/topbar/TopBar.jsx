@@ -14,7 +14,6 @@ export default function TopBar() {
       <div className="topLeft">
         <i className="topIcon fab fa-facebook-square"></i>
         <i className="topIcon fab fa-twitter-square"></i>
-        <i className="topIcon fab fa-pinterest-square"></i>
         <i className="topIcon fab fa-instagram-square"></i>
       </div>
       <div className="topCenter">
@@ -22,8 +21,6 @@ export default function TopBar() {
           <li className="topListItem">
             <Link to="/" className="link">HOME</Link>
           </li>
-          <li className="topListItem"><Link to="/" className="link">ABOUT</Link></li>
-          <li className="topListItem"><Link to="/" className="link">CONTACT</Link></li>
           <li className="topListItem"><Link to="/write" className="link">WRITE</Link></li>
           <li className="topListItem" onClick={handleClick}>{user && "LOGOUT"}</li>
         </ul>
